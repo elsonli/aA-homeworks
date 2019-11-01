@@ -15,4 +15,12 @@ class Stack
     def peek
         @stack.last
     end
+
+    def size
+        @stack.length
+    end
+
+    def empty?
+        @stack.empty?
+    end
 end
