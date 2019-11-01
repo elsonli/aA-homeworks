@@ -14,4 +14,16 @@ class Queue
     def peek
         @queue.first
     end
+
+    def show
+        @queue.dup
+    end
+
+    def size
+        @queue.length
+    end
+
+    def empty?
+        @queue.empty?
+    end
 end
