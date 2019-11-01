@@ -47,7 +47,6 @@ class Map
 
     def get(key)
         @map.each { |key_val| return key_val[1] if key_val[0] == key }
-        end
         nil
     end
 
