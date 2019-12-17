@@ -158,6 +158,7 @@ function (_React$Component) {
     };
     _this.setNum1 = _this.setNum1.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.setNum2 = _this.setNum2.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.clearNumbers = _this.clearNumbers.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.addNumbers = _this.addNumbers.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.subtractNumbers = _this.subtractNumbers.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.multiplyNumbers = _this.multiplyNumbers.bind(_assertThisInitialized(_assertThisInitialized(_this)));
@@ -183,10 +184,19 @@ function (_React$Component) {
       });
     }
   }, {
+    key: "clearNumbers",
+    value: function clearNumbers(event) {
+      event.preventDefault();
+      this.setState({
+        num1: "",
+        num2: "",
+        result: 0
+      });
+    }
+  }, {
     key: "addNumbers",
     value: function addNumbers(event) {
       event.preventDefault();
-      debugger;
       this.setState({
         result: parseInt(this.state.num1) + parseInt(this.state.num2)
       });
@@ -221,13 +231,15 @@ function (_React$Component) {
       var _this$state = this.state,
           num1 = _this$state.num1,
           num2 = _this$state.num2;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.state.result), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.state.result), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         onChange: this.setNum1,
         value: num1
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         onChange: this.setNum2,
         value: num2
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.clearNumbers
+      }, "Clear")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.addNumbers
       }, "+"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.subtractNumbers
@@ -235,7 +247,7 @@ function (_React$Component) {
         onClick: this.multiplyNumbers
       }, "*"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.divideNumbers
-      }, "/"));
+      }, "/")));
     }
   }]);
 
