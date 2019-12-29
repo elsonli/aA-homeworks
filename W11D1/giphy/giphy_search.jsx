@@ -6,8 +6,9 @@ import Root from './components/root';
 // Testing on the window
 import * as APIUtil from "./util/api_util";
 import * as GiphyActions from "./actions/giphy_actions";
-window.fetchSearchGiphys = APIUtil.fetchSearchGiphys;
+window.fetchSearchGiphysUtil = APIUtil.fetchSearchGiphys;
 window.receiveSearchGiphys = GiphyActions.receiveSearchGiphys;
+window.fetchSearchGiphysAction = GiphyActions.fetchSearchGiphys;
 
 // Use a Document Ready Callback to grab the Root div of the HTML page
 // and render the Root of our App in its place

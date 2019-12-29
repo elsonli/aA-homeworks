@@ -90,23 +90,38 @@
 /*!**********************************!*\
   !*** ./actions/giphy_actions.js ***!
   \**********************************/
-/*! exports provided: RECEIVE_SEARCH_GIPHYS, receiveSearchGiphys */
+/*! exports provided: RECEIVE_SEARCH_GIPHYS, REQUEST_SEARCH_GIPHYS, receiveSearchGiphys, fetchSearchGiphys */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_SEARCH_GIPHYS", function() { return RECEIVE_SEARCH_GIPHYS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REQUEST_SEARCH_GIPHYS", function() { return REQUEST_SEARCH_GIPHYS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveSearchGiphys", function() { return receiveSearchGiphys; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchSearchGiphys", function() { return fetchSearchGiphys; });
 /* harmony import */ var _util_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/api_util */ "./util/api_util.js");
  // Constants for Action Creators
 
-var RECEIVE_SEARCH_GIPHYS = "RECEIVE_SEARCH_GIPHYS"; // Receiving `giphys` as an argument, `receiveSearchGiphys` returns an
+var RECEIVE_SEARCH_GIPHYS = "RECEIVE_SEARCH_GIPHYS";
+var REQUEST_SEARCH_GIPHYS = 'REQUEST_SEARCH_GIPHYS'; // ----------------------- ACTION CREATORS -----------------------
+// Receiving `giphys` as an argument, `receiveSearchGiphys` returns an
 // Action Object to be dispatched to the reducer
 
 var receiveSearchGiphys = function receiveSearchGiphys(giphys) {
   return {
     type: RECEIVE_SEARCH_GIPHYS,
     giphys: giphys
+  };
+}; // -------------------- THUNK ACTION CREATORS --------------------
+// `fetchSearchGiphys` returns another function that takes in a searchTerm,
+// and when called with dispatch as an argument, dispatches synchronously
+// after the AJAX request finishes and returns to us a Promise
+
+var fetchSearchGiphys = function fetchSearchGiphys(searchTerm) {
+  return function (dispatch) {
+    _util_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchSearchGiphys"](searchTerm).then(function (giphys) {
+      return dispatch(receiveSearchGiphys(giphys.data));
+    });
   };
 };
 
@@ -219,8 +234,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-window.fetchSearchGiphys = _util_api_util__WEBPACK_IMPORTED_MODULE_4__["fetchSearchGiphys"];
-window.receiveSearchGiphys = _actions_giphy_actions__WEBPACK_IMPORTED_MODULE_5__["receiveSearchGiphys"]; // Use a Document Ready Callback to grab the Root div of the HTML page
+window.fetchSearchGiphysUtil = _util_api_util__WEBPACK_IMPORTED_MODULE_4__["fetchSearchGiphys"];
+window.receiveSearchGiphys = _actions_giphy_actions__WEBPACK_IMPORTED_MODULE_5__["receiveSearchGiphys"];
+window.fetchSearchGiphysAction = _actions_giphy_actions__WEBPACK_IMPORTED_MODULE_5__["fetchSearchGiphys"]; // Use a Document Ready Callback to grab the Root div of the HTML page
 // and render the Root of our App in its place
 
 document.addEventListener("DOMContentLoaded", function () {
